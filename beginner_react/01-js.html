@@ -2,17 +2,40 @@
 
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
 
-<script type="text/javascript">
+<script type="text/babel">
     const rootElement = document.getElementById('root')
-    // const element = document.createElement('div')
-    // element.textContent = 'Hello World'
-    // rootElement.appendChild(element)
-    const element = React.createElement(
-        'div',
-        {className: 'container'},
-        'Hello World'
+    const content = 'Hello World'
+    const myClassName = 'container'
+
+    const props = {
+        className: 'container',
+        children: 'Hello World',
+    }
+
+    const Message = props => <div className="">{props.children}</div>
+
+    const element = (
+        <div>
+            <p><b>To overide values passed in props, add the definition to the right of props.</b></p>
+            <div {...props} className='not-container' />
+            <p><b>To have defaults to account for them being missing, add to the left</b></p>
+            <div className='is-container' {...props} />
+            <p><b>To overide childen, just add them as a value</b></p>
+            <div {...props}>Hello Universe</div>
+
+            <br/>
+
+            <div className="container">
+                <Message>Hello World!</Message>
+                <Message>Goodbye World!</Message>
+            </div>
+        </div>
+
+
+
     )
-    console.log(element)
+
     ReactDOM.render(element, rootElement)
 </script>
