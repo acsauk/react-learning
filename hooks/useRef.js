@@ -8,7 +8,8 @@ function App() {
     const messageRef = useRef()
 
     useEffect(() => {
-        console.log(messageRef)
+        const boundingBox = messageRef.current.getBoundingClientRect() 
+        console.log(boundingBox.width)
     })
 
     function handleInput(e) {
@@ -20,7 +21,7 @@ function App() {
             <h1>How to useRef in React</h1>
             <input value={value} onChange={handleInput} />
             <div>
-                <span>{value}</span>
+                <span ref={messageRef}>{value}</span>
             </div>
           </div>
     );
